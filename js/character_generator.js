@@ -7,6 +7,8 @@ const hairs = ['大波浪', '蛋卷头', '波波头', '羊毛卷', '法式卷', 
 const colors = ['洁白', '灰白', '透白', '赤红', '粉红', '亮红', '天蓝', '海蓝', '蓝色', '绿色', '紫色', '橙色', '黑色', '棕色', '褐色', '橘色', '深绿', '浅绿', '深紫', '黄色', '深黑', '银色', '金色', '红色', '肉色'];
 const cups = ['AA', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
+const delay = 1000;
+
 // import {heights} from "./character_attributes.js";
 
 function rand(min, max) {
@@ -16,9 +18,24 @@ function rand(min, max) {
 
 function generate() {
     // generate random charactor attributes
-    // alert("hello world")
-    var results = document.getElementById("results");
     var btn = document.getElementById("btn");
+    var results = document.getElementById("results");
+
+    btn.disabled = true;
+    btn.innerHTML = "生成中……";
+    results.style.display = "none"
+    setTimeout(display, delay);
+
+}
+
+function display() {
+    var btn = document.getElementById("btn");
+    var results = document.getElementById("results");
+
+    btn.disabled = false;
+    btn.innerHTML = "点击生成";
+    results.style.display = "";
+
     var height = document.getElementById("height");
     var type = document.getElementById("type");
     var nature = document.getElementById("nature");
@@ -28,10 +45,6 @@ function generate() {
     var color_eyes = document.getElementById("color_eyes");
     var cup = document.getElementById("cup");
 
-    if (results.style.display == "none") {
-        results.style.display = "";
-    }
-
     height.innerHTML = rand(heights[0], heights[1]);
     type.innerHTML = types[rand(0, types.length)];
     nature.innerHTML = natures[rand(0, natures.length)];
@@ -40,4 +53,5 @@ function generate() {
     color_hair.innerHTML = colors[rand(0, colors.length)];
     color_eyes.innerHTML = colors[rand(0, colors.length)];
     cup.innerHTML = cups[rand(0, cups.length)];
+
 }
